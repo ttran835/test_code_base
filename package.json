@@ -1,0 +1,44 @@
+{
+  "name": "test_code_base",
+  "version": "1.0.0",
+  "description": "Test code base Vanilla js",
+  "main": "index.js",
+  "scripts": {
+    "webpack": "webpack",
+    "webpack-dev": "webpack -w",
+    "start": "nodemon server/server.js",
+    "scss-dev": "node-sass --watch client/src/styles -o client/dist/styles/ ",
+    "scss": "node-sass client/src/styles -o client/dist/styles/"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ttran835/test_code_base.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ttran835/test_code_base/issues"
+  },
+  "homepage": "https://github.com/ttran835/test_code_base#readme",
+  "devDependencies": {
+    "@babel/cli": "^7.5.5",
+    "@babel/core": "^7.5.5",
+    "@babel/plugin-transform-runtime": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "autoprefixer": "^9.6.1",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "eslint": "^6.2.2",
+    "eslint-config-airbnb": "^18.0.1",
+    "eslint-config-airbnb-base": "^14.0.0",
+    "eslint-plugin-import": "^2.18.2",
+    "node-sass": "^4.12.0",
+    "path": "^0.12.7",
+    "postcss-loader": "^3.0.0",
+    "postcss-scss": "^2.0.0",
+    "sass-loader": "^7.3.1",
+    "style-loader": "^1.0.0",
+    "webpack": "^4.39.3",
+    "webpack-cli": "^3.3.7"
+  }
+}
