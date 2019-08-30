@@ -17,7 +17,7 @@ const postCSSLoader = {
 };
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, './client/src/data/scripts.js'),
+  entry: path.resolve(__dirname, './client/src/scripts/'),
   output: {
     path: path.resolve(__dirname, './client/public'),
     filename: 'bundle.js',

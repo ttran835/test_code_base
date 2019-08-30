@@ -7,8 +7,8 @@
     "webpack": "webpack",
     "webpack-dev": "webpack -w",
     "start": "nodemon server/server.js",
-    "scss-dev": "node-sass --watch client/src/styles/styles.scss -o client/public/styles.css ",
-    "scss": "node-sass client/src/styles/styles.scss -o client/public/stlyes.css"
+    "scss-dev": "node-sass --watch client/src/styles/styles.scss -o client/public/ ",
+    "scss": "node-sass client/src/styles/styles.scss -o client/public/"
   },
   "repository": {
     "type": "git",

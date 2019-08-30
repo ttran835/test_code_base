@@ -5,6 +5,10 @@
     Get the server working first, then once this is done, focus 
     on styling and make sure that everything is responsive
     and function correctly. 
+
+    TODO: 
+      Reimplement FakeDataToRender in order to receive the entire object
+      and then convert it into a storage. 
   */
 
 const FakeDataToRender = () => {
@@ -55,6 +59,8 @@ FakeDataToRender.prototype.renderData = object => {
   for (let keys in object) {
     const label = document.createElement('LABEL');
     const paragraph = document.createElement('P');
+    const panel = document.createElement('DIV');
+    panel.classList.add('panel');
     const description = object[keys].description;
     const materialObj = object[keys].materialType;
 
@@ -62,21 +68,24 @@ FakeDataToRender.prototype.renderData = object => {
       case 'Fit Guide':
         label.innerHTML = keys;
         paragraph.innerHTML = description;
+        panel.appendChild(paragraph);
+        panel.classList.add('active');
         fit.appendChild(label);
-        fit.appendChild(paragraph);
+        fit.appendChild(panel);
         break;
 
       case 'Care':
         label.innerHTML = keys;
         paragraph.innerHTML = description;
+        panel.appendChild(paragraph);
         care.appendChild(label);
-        care.appendChild(paragraph);
+        care.appendChild(panel);
         break;
 
       case 'Material':
         label.innerHTML = keys;
         paragraph.innerHTML = description;
-        materials.appendChild(label);
+        materials.insertBefore(label, materials.childNodes[0]);
 
         for (let keys in materialObj) {
           const singleMaterialDiv = document.createElement('DIV');
@@ -86,11 +95,13 @@ FakeDataToRender.prototype.renderData = object => {
           materialP.innerHTML = materialObj[keys];
           span.innerHTML = keys;
 
-          singleMaterialDiv.appendChild(span);
           singleMaterialDiv.appendChild(materialP);
+          singleMaterialDiv.appendChild(span);
           materialStats.appendChild(singleMaterialDiv);
+          panel.appendChild(materialStats);
         }
-        materials.appendChild(paragraph);
+        panel.appendChild(paragraph);
+        materials.appendChild(panel);
         break;
 
       default:
@@ -102,9 +113,56 @@ const AnimationAndEventTriggers = () => {
   this.storage = [];
 };
 
-AnimationAndEventTriggers.prototype.renderTabs = () => {};
+AnimationAndEventTriggers.prototype.accordion = () => {
+  let accordion = document.getElementsByClassName('accordion');
+
+  for (let i = 0; i < accordion.length; i++) {
+    const panel = accordion[i].querySelector('.panel');
+    const panelClassList = panel.classList;
+    accordion[i].addEventListener('click', function() {
+      if (panelClassList.contains('active')) {
+        panelClassList.remove('active');
+      } else {
+        panelClassList.add('active');
+      }
+    });
+  }
+};
+
+AnimationAndEventTriggers.prototype.tabToggle = () => {
+  const tabs = document.getElementsByClassName('tab');
+
+  const clickTabs = event => {
+    const panel = document.querySelectorAll('.panel');
+
+    for (var i = 0; i < tabs.length; i++) {
+      tabs[i].classList.remove('active');
+    }
+    const clickedTab = event.currentTarget;
+    clickedTab.classList.add('active');
+    event.preventDefault();
+
+    for (i = 0; i < panel.length; i++) {
+      panel[i].classList.remove('active');
+    }
+
+    const anchorReference = event.target;
+    const activePaneId = anchorReference.getAttribute('href');
+    const activePane = document.querySelector(activePaneId);
+    const activatePanel = activePane.querySelector('.panel');
+
+    activatePanel.classList.add('active');
+  };
+
+  for (let i = 0; i < tabs.length; i++) {
+    tabs[i].addEventListener('click', clickTabs);
+  }
+};
 
 const newData = new FakeDataToRender();
 const newDataObj = newData.storeData();
 const createDivs = newData.renderData(newDataObj);
-console.log({ newDataObj });
+
+const animation = new AnimationAndEventTriggers();
+animation.accordion();
+animation.tabToggle();
