@@ -81,19 +81,20 @@
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = "./client/public/scripts/scripts.js");
+/******/ 	return __webpack_require__(__webpack_require__.s = "./client/src/data/scripts.js");
 /******/ })
 /************************************************************************/
 /******/ ({
 
-/***/ "./client/public/scripts/scripts.js":
-/*!******************************************!*\
-  !*** ./client/public/scripts/scripts.js ***!
-  \******************************************/
+/***/ "./client/src/data/scripts.js":
+/*!************************************!*\
+  !*** ./client/src/data/scripts.js ***!
+  \************************************/
 /*! no static exports found */
-/***/ (function(module, exports) {
+/***/ (function(module, exports, __webpack_require__) {
 
-eval("var test = function test(num) {\n  return num;\n};\n\ntest(2);\n\n//# sourceURL=webpack:///./client/public/scripts/scripts.js?");
+"use strict";
+eval("\n/* \n    Need to fsreadJSON data \n    Once data is done, build the html divs with JavaScript \n    Get the server working first, then once this is done, focus \n    on styling and make sure that everything is responsive\n    and function correctly. \n  */\n\nvar _this = this;\n\nvar FakeDataToRender = function FakeDataToRender() {\n  _this.storage = [{\n    header: 'Fit Guide',\n    description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas congue quisque egestas diam. Risus feugiat in ante metus dictum at tempor. Ut lectus arcu bibendum at varius vel pharetra vel. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Sit amet tellus cras adipiscing enim eu turpis egestas. Ut tortor pretium viverra suspendisse potenti nullam ac tortor vitae. Vel quam elementum pulvinar etiam non quam. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Nulla at volutpat diam ut venenatis tellus. Felis eget velit aliquet sagittis id consectetur purus ut. Egestas diam in arcu cursus euismod. Duis at consectetur lorem donec. Malesuada bibendum arcu vitae elementum curabitur vitae. Lectus sit amet est placerat in egestas erat imperdiet.'\n  }, {\n    header: 'Care',\n    description: 'Aenean vel felis eu ipsum pharetra finibus. Proin accumsan eleifend dui, in convallis mauris varius sed. Nam luctus justo ut placerat efficitur. Morbi aliquet, lacus a dictum luctus, neque neque fermentum risus, rhoncus accumsan ex sapien ut nisi. Aenean sit amet mattis turpis. Nullam diam erat, sagittis sed laoreet sed, porta a nulla. Mauris luctus aliquet est, sit amet maximus dolor tincidunt vitae. Vestibulum porttitor maximus arcu, et bibendum urna semper id. Integer id sagittis urna. Curabitur nisl sapien, pharetra placerat quam a, tempus dignissim dui. Nunc fermentum dui nec ex blandit, vitae lacinia ante laoreet.'\n  }, {\n    header: 'Material',\n    type: [{\n      Cashmere: '50%',\n      Wool: '46%',\n      Modal: '4%'\n    }],\n    description: 'Aenean vel felis eu ipsum pharetra finibus. Proin accumsan eleifend dui, in convallis mauris varius sed. Nam luctus justo ut placerat efficitur. Morbi aliquet, lacus a dictum luctus, neque neque fermentum risus, rhoncus accumsan ex sapien ut nisi. Aenean sit amet mattis turpis. Nullam diam erat, sagittis sed laoreet sed, porta a nulla. Mauris luctus aliquet est, sit amet maximus dolor tincidunt vitae. Vestibulum porttitor maximus arcu, et bibendum urna semper id. Integer id sagittis urna. Curabitur nisl sapien, pharetra placerat quam a, tempus dignissim dui. Nunc fermentum dui nec ex blandit, vitae lacinia ante laoreet.'\n  }];\n};\n\nFakeDataToRender.prototype.getData = function () {\n  return _this.storage;\n};\n\nvar data = new FakeDataToRender();\nvar fakeData = data.getData();\nconsole.log({\n  fakeData: fakeData\n});\n\n//# sourceURL=webpack:///./client/src/data/scripts.js?");
 
 /***/ })
 

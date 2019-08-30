@@ -1,15 +1,7 @@
 const path = require('path');
 const webpack = require('webpack');
 const autoprefixer = require('autoprefixer');
-
-const CSSLoader = {
-  loader: 'css-loader',
-  options: {
-    modules: false,
-    sourceMap: true,
-    // minimize: true,
-  },
-};
+const ExtractTextPlugin = require('extract-text-webpack-plugin');
 
 const postCSSLoader = {
   loader: 'postcss-loader',
@@ -25,7 +17,7 @@ const postCSSLoader = {
 };
 module.exports = {
   mode: 'development',
-  entry: path.resolve(__dirname, './client/public/scripts/scripts.js'),
+  entry: path.resolve(__dirname, './client/src/data/scripts.js'),
   output: {
     path: path.resolve(__dirname, './client/public'),
     filename: 'bundle.js',
@@ -34,7 +26,7 @@ module.exports = {
     rules: [
       {
         loader: 'babel-loader',
-        test: /\.js[x]?/,
+        test: /\.js?/,
         exclude: /node_modules/,
         options: {
           presets: [['@babel/preset-env', { modules: false }]],
@@ -48,14 +40,18 @@ module.exports = {
       {
         test: /\.scss$/,
         exclude: /\.module\.scss$/,
-        use: ['style-loader', CSSLoader, postCSSLoader, 'sass-loader'],
+        use: ['css-loader', postCSSLoader, 'sass-loader'],
       },
       {
-        test: /\.module\.scss$/,
-        use: ['style-loader', postCSSLoader, 'sass-loader'],
+        test: /\.css$/,
+        loader: ExtractTextPlugin.extract({
+          fallback: 'style-loader',
+          use: ['css-loader'],
+        }),
       },
     ],
   },
+  target: 'web',
   resolve: {
     extensions: ['.js'],
   },

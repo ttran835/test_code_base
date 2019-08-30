@@ -1,0 +1,41 @@
+@import './custom';
+
+.example-col {
+  @include breakpoint(laptop);
+}
+
+.container {
+  @include breakpoint(mobile);
+  @include breakpoint(tablet);
+  @include breakpoint(laptop);
+  @include breakpoint(desktop);
+  display: block;
+  margin: auto;
+}
+
+.row {
+  @include breakpoint(mobile);
+  @include breakpoint(tablet);
+  @include breakpoint(laptop);
+  @include breakpoint(desktop);
+  padding: 0 $grid-gutter;
+}
+
+.col {
+  padding: 0 $grid-gutter;
+}
+
+#tabs {
+  @include breakpoint(mobile) {
+    display: none;
+  }
+  @include breakpoint(tablet) {
+    display: flex;
+    justify-content: space-evenly;
+    label {
+      font-size: 2em;
+      padding: 0 15px;
+      text-transform: uppercase;
+    }
+  }
+}

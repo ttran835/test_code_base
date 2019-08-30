@@ -1,0 +1,60 @@
+/* 
+  custom vars to help with responsiveness
+  All will be compiled into styles.css
+*/
+
+/* All Grids */
+$grid-gutter: 15px;
+$container-margin: -15px;
+
+/* Breakpoints */
+
+$grid-breakpoints: (
+  xs: 0,
+  sm: 576px,
+  md: 768px,
+  lg: 992px,
+  xl: 1200px,
+);
+
+$container-max-widths: (
+  sm: 540px,
+  md: 720px,
+  lg: 960px,
+  xl: 1140px,
+);
+
+$desktop: 1200px;
+$laptop: 992px;
+$tablet: 768px;
+$mobile: 576px;
+
+/* Grid mixins */
+
+@mixin breakpoint($query) {
+  @if $query == desktop {
+    @media (min-width: 1200px) {
+      width: 1140px;
+      max-width: 1140px;
+      @content;
+    }
+  } @else if $query == laptop {
+    @media (min-width: 992px) {
+      width: 960px;
+      max-width: 960px;
+      @content;
+    }
+  } @else if $query == tablet {
+    @media (min-width: 768px) {
+      width: 720px;
+      max-width: 720px;
+      @content;
+    }
+  } @else if $query == mobile {
+    @media (max-width: 576px) {
+      width: 540px;
+      max-width: 540px;
+      @content;
+    }
+  }
+}
