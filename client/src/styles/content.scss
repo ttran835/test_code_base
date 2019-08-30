@@ -1,9 +1,5 @@
 @import './custom';
 
-.example-col {
-  @include breakpoint(laptop);
-}
-
 .container {
   @include breakpoint(mobile);
   @include breakpoint(tablet);
@@ -14,10 +10,8 @@
 }
 
 .row {
-  @include breakpoint(mobile);
-  @include breakpoint(tablet);
-  @include breakpoint(laptop);
-  @include breakpoint(desktop);
+  display: block;
+  margin: auto;
   padding: 0 $grid-gutter;
 }
 
@@ -25,17 +19,45 @@
   padding: 0 $grid-gutter;
 }
 
-#tabs {
-  @include breakpoint(mobile) {
-    display: none;
+#main-content {
+  #tabs {
+    @include breakpoint(mobile) {
+      display: none;
+    }
+    @include breakpoint(tablet) {
+      display: block;
+      justify-content: space-evenly;
+      width: 690px;
+      margin:auto;
+      label {
+        display: inline-block;
+        padding: 0 15px 0 0;
+      }
+    }
   }
-  @include breakpoint(tablet) {
-    display: flex;
-    justify-content: space-evenly;
-    label {
-      font-size: 2em;
-      padding: 0 15px;
-      text-transform: uppercase;
+
+  #accordion {
+    display: block;
+    width: 690px;
+    margin: auto;
+  }
+
+  label {
+    font-size: 2em;
+    text-transform: uppercase;
+  }
+  /* material content css */
+
+  #materials #material-stats {
+    display: block;
+    margin: auto;
+    width: 547px;
+    text-align: center;
+
+    .material {
+      display: inline-block;
+      padding: 0 25px;
+      text-align: center;
     }
   }
 }

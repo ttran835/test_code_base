@@ -52,8 +52,8 @@ $mobile: 576px;
     }
   } @else if $query == mobile {
     @media (max-width: 576px) {
-      width: 540px;
-      max-width: 540px;
+      width: 375px;
+      max-width: 100%;
       @content;
     }
   }
