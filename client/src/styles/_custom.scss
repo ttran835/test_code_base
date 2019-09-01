@@ -51,10 +51,18 @@ $mobile: 576px;
       @content;
     }
   } @else if $query == mobile {
-    @media (max-width: 576px) {
+    @media (min-width: 0px) {
       width: 375px;
       max-width: 100%;
       @content;
     }
   }
 }
+
+/* colors, fonts, size */
+$primary-color: #000;
+$primary-border-color: #000;
+$label-font-size: .94em;
+$label-p-size: .90em;
+$mat-number-font-size: 2.27em;
+$mat-description-font-size: 1.16em;

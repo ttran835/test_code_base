@@ -9,36 +9,38 @@
     TODO: 
       Reimplement FakeDataToRender in order to receive the entire object
       and then convert it into a storage. 
+
+      Fit guide 
+      Care 
+      Material
   */
-
-const FakeDataToRender = () => {
-  this.storage = [
-    {
-      header: 'Fit Guide',
-      description:
-        'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas congue quisque egestas diam. Risus feugiat in ante metus dictum at tempor. Ut lectus arcu bibendum at varius vel pharetra vel. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Sit amet tellus cras adipiscing enim eu turpis egestas. Ut tortor pretium viverra suspendisse potenti nullam ac tortor vitae. Vel quam elementum pulvinar etiam non quam. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Nulla at volutpat diam ut venenatis tellus. Felis eget velit aliquet sagittis id consectetur purus ut. Egestas diam in arcu cursus euismod. Duis at consectetur lorem donec. Malesuada bibendum arcu vitae elementum curabitur vitae. Lectus sit amet est placerat in egestas erat imperdiet.',
+const fakeObj = [
+  {
+    header: 'Fit Guide',
+    description:
+      'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Egestas congue quisque egestas diam. Risus feugiat in ante metus dictum at tempor. Ut lectus arcu bibendum at varius vel pharetra vel. Commodo quis imperdiet massa tincidunt nunc pulvinar sapien et. Sit amet tellus cras adipiscing enim eu turpis egestas. Ut tortor pretium viverra suspendisse potenti nullam ac tortor vitae. Vel quam elementum pulvinar etiam non quam. Luctus venenatis lectus magna fringilla urna porttitor rhoncus dolor. Nulla at volutpat diam ut venenatis tellus. Felis eget velit aliquet sagittis id consectetur purus ut. Egestas diam in arcu cursus euismod. Duis at consectetur lorem donec. Malesuada bibendum arcu vitae elementum curabitur vitae. Lectus sit amet est placerat in egestas erat imperdiet.',
+  },
+  {
+    header: 'Care',
+    description:
+      'Aenean vel felis eu ipsum pharetra finibus. Proin accumsan eleifend dui, in convallis mauris varius sed. Nam luctus justo ut placerat efficitur. Morbi aliquet, lacus a dictum luctus, neque neque fermentum risus, rhoncus accumsan ex sapien ut nisi. Aenean sit amet mattis turpis. Nullam diam erat, sagittis sed laoreet sed, porta a nulla. Mauris luctus aliquet est, sit amet maximus dolor tincidunt vitae. Vestibulum porttitor maximus arcu, et bibendum urna semper id. Integer id sagittis urna. Curabitur nisl sapien, pharetra placerat quam a, tempus dignissim dui. Nunc fermentum dui nec ex blandit, vitae lacinia ante laoreet.',
+  },
+  {
+    header: 'Materials',
+    type: {
+      Cashmere: '50%',
+      Wool: '46%',
+      Modal: '4%',
     },
-    {
-      header: 'Care',
-      description:
-        'Aenean vel felis eu ipsum pharetra finibus. Proin accumsan eleifend dui, in convallis mauris varius sed. Nam luctus justo ut placerat efficitur. Morbi aliquet, lacus a dictum luctus, neque neque fermentum risus, rhoncus accumsan ex sapien ut nisi. Aenean sit amet mattis turpis. Nullam diam erat, sagittis sed laoreet sed, porta a nulla. Mauris luctus aliquet est, sit amet maximus dolor tincidunt vitae. Vestibulum porttitor maximus arcu, et bibendum urna semper id. Integer id sagittis urna. Curabitur nisl sapien, pharetra placerat quam a, tempus dignissim dui. Nunc fermentum dui nec ex blandit, vitae lacinia ante laoreet.',
-    },
-    {
-      header: 'Material',
-      type: {
-        Cashmere: '50%',
-        Wool: '46%',
-        Modal: '4%',
-      },
 
-      description:
-        'Aenean vel felis eu ipsum pharetra finibus. Proin accumsan eleifend dui, in convallis mauris varius sed. Nam luctus justo ut placerat efficitur. Morbi aliquet, lacus a dictum luctus, neque neque fermentum risus, rhoncus accumsan ex sapien ut nisi. Aenean sit amet mattis turpis. Nullam diam erat, sagittis sed laoreet sed, porta a nulla. Mauris luctus aliquet est, sit amet maximus dolor tincidunt vitae. Vestibulum porttitor maximus arcu, et bibendum urna semper id. Integer id sagittis urna. Curabitur nisl sapien, pharetra placerat quam a, tempus dignissim dui. Nunc fermentum dui nec ex blandit, vitae lacinia ante laoreet.',
-    },
-  ];
-};
+    description:
+      'Aenean vel felis eu ipsum pharetra finibus. Proin accumsan eleifend dui, in convallis mauris varius sed. Nam luctus justo ut placerat efficitur. Morbi aliquet, lacus a dictum luctus, neque neque fermentum risus, rhoncus accumsan ex sapien ut nisi. Aenean sit amet mattis turpis. Nullam diam erat, sagittis sed laoreet sed, porta a nulla. Mauris luctus aliquet est, sit amet maximus dolor tincidunt vitae. Vestibulum porttitor maximus arcu, et bibendum urna semper id. Integer id sagittis urna. Curabitur nisl sapien, pharetra placerat quam a, tempus dignissim dui. Nunc fermentum dui nec ex blandit, vitae lacinia ante laoreet.',
+  },
+];
 
-FakeDataToRender.prototype.storeData = () => {
-  const storeData = this.storage;
+const FakeDataToRender = (obj) => {
+  this.storage = {};
+  const storeData = obj;
   let newDataObj = {};
 
   storeData.forEach((data, i, arr) => {
@@ -47,10 +49,11 @@ FakeDataToRender.prototype.storeData = () => {
     newDataObj[data.header] = { description, materialType };
   });
 
-  return newDataObj;
+  this.storage = newDataObj;
 };
 
-FakeDataToRender.prototype.renderData = object => {
+FakeDataToRender.prototype.renderData = () => {
+  const object = this.storage;
   const fit = document.getElementById('fit');
   const care = document.getElementById('care');
   const materials = document.getElementById('materials');
@@ -58,6 +61,8 @@ FakeDataToRender.prototype.renderData = object => {
 
   for (let keys in object) {
     const label = document.createElement('LABEL');
+    const labelDiv = document.createElement('DIV');
+    labelDiv.classList.add('label-title');
     const paragraph = document.createElement('P');
     const panel = document.createElement('DIV');
     panel.classList.add('panel');
@@ -69,8 +74,10 @@ FakeDataToRender.prototype.renderData = object => {
         label.innerHTML = keys;
         paragraph.innerHTML = description;
         panel.appendChild(paragraph);
-        panel.classList.add('active');
-        fit.appendChild(label);
+        panel.classList.add('active-others');
+        labelDiv.appendChild(label);
+        labelDiv.classList.add('active');
+        fit.appendChild(labelDiv);
         fit.appendChild(panel);
         break;
 
@@ -78,15 +85,16 @@ FakeDataToRender.prototype.renderData = object => {
         label.innerHTML = keys;
         paragraph.innerHTML = description;
         panel.appendChild(paragraph);
-        care.appendChild(label);
+        labelDiv.appendChild(label);
+        care.appendChild(labelDiv);
         care.appendChild(panel);
         break;
 
-      case 'Material':
+      case 'Materials':
         label.innerHTML = keys;
         paragraph.innerHTML = description;
-        materials.insertBefore(label, materials.childNodes[0]);
-
+        labelDiv.appendChild(label);
+        
         for (let keys in materialObj) {
           const singleMaterialDiv = document.createElement('DIV');
           singleMaterialDiv.classList.add('material');
@@ -100,6 +108,7 @@ FakeDataToRender.prototype.renderData = object => {
           materialStats.appendChild(singleMaterialDiv);
           panel.appendChild(materialStats);
         }
+        materials.insertBefore(labelDiv, materials.childNodes[0]);
         panel.appendChild(paragraph);
         materials.appendChild(panel);
         break;
@@ -114,18 +123,28 @@ const AnimationAndEventTriggers = () => {
 };
 
 AnimationAndEventTriggers.prototype.accordion = () => {
-  let accordion = document.getElementsByClassName('accordion');
+  const accordion = document.getElementsByClassName('label-title');
+
+  const clickAccordion = event => {
+    const panel = document.querySelectorAll('.panel');
+
+    for (let i = 0; i < panel.length; i++) {
+      panel[i].classList.remove('active-mobile');
+      accordion[i].classList.remove('active');
+      panel[i].classList.remove('active-others');
+    }
+
+    const clickedAccordion = event.currentTarget;
+    const panelSibling = clickedAccordion.nextElementSibling;
+    const panelClassList = panelSibling.classList;
+
+    clickedAccordion.classList.add('active');
+    panelClassList.add('active-mobile');
+    event.preventDefault();
+  };
 
   for (let i = 0; i < accordion.length; i++) {
-    const panel = accordion[i].querySelector('.panel');
-    const panelClassList = panel.classList;
-    accordion[i].addEventListener('click', function() {
-      if (panelClassList.contains('active')) {
-        panelClassList.remove('active');
-      } else {
-        panelClassList.add('active');
-      }
-    });
+    accordion[i].addEventListener('click', clickAccordion);
   }
 };
 
@@ -143,7 +162,8 @@ AnimationAndEventTriggers.prototype.tabToggle = () => {
     event.preventDefault();
 
     for (i = 0; i < panel.length; i++) {
-      panel[i].classList.remove('active');
+      panel[i].classList.remove('active-others');
+      panel[i].classList.remove('active-mobile')
     }
 
     const anchorReference = event.target;
@@ -151,7 +171,7 @@ AnimationAndEventTriggers.prototype.tabToggle = () => {
     const activePane = document.querySelector(activePaneId);
     const activatePanel = activePane.querySelector('.panel');
 
-    activatePanel.classList.add('active');
+    activatePanel.classList.add('active-others');
   };
 
   for (let i = 0; i < tabs.length; i++) {
@@ -159,10 +179,9 @@ AnimationAndEventTriggers.prototype.tabToggle = () => {
   }
 };
 
-const newData = new FakeDataToRender();
-const newDataObj = newData.storeData();
-const createDivs = newData.renderData(newDataObj);
+const newData = new FakeDataToRender(fakeObj);
+newData.renderData();
 
 const animation = new AnimationAndEventTriggers();
-animation.accordion();
 animation.tabToggle();
+animation.accordion();

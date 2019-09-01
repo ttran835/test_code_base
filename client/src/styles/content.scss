@@ -13,6 +13,9 @@
   display: block;
   margin: auto;
   padding: 0 $grid-gutter;
+  @include breakpoint(tablet) {
+    padding: 0;
+  }
 }
 
 .col {
@@ -21,18 +24,42 @@
 
 #main-content {
   #tabs {
+    list-style-type: none;
+    padding: 0;
+    .tab {
+      text-align: center;
+      width: 182px;
+      border: solid 1px $primary-border-color;
+      transition: all 0.3s ease;
+      a {
+        display: inline-block;
+        font-size: $label-font-size;
+        font-weight: 600;
+        color: $primary-color;
+        text-transform: uppercase;
+        text-decoration: none;
+        width: 100%;
+        padding: 10px 0;
+        cursor: pointer;
+        transition: all 0.3s ease;
+      }
+    }
+    .active {
+      background-color: #000;
+      transition: all 0.3s ease;
+      a {
+        color: #fff;
+      }
+    }
+
     @include breakpoint(mobile) {
       display: none;
     }
     @include breakpoint(tablet) {
-      display: block;
-      justify-content: space-evenly;
+      display: flex;
+      justify-content: center;
       width: 690px;
       margin: auto;
-      label {
-        display: inline-block;
-        padding: 0 15px 0 0;
-      }
     }
   }
 
@@ -40,36 +67,137 @@
     display: block;
     margin: auto;
 
-    @include breakpoint(tablet) {
-      width: 690px;
+    .accordion {
+      border-bottom: solid 1px $primary-border-color;
+      @include breakpoint(tablet) {
+        border-bottom: none;
+        width: 690px;
+      }
+    }
+
+    .label-title {
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 0;
+      cursor: pointer;
       label {
+        font-size: $label-font-size;
+        font-weight: 600;
+        color: $primary-color;
+      }
+      &:after {
+        content: '\002B';
+        font-size: $label-font-size;
+        color: $primary-color;
+        font-weight: 600;
+      }
+      @include breakpoint(tablet) {
         display: none;
       }
     }
-    .panel {
-      display: none;
-    }
+
     .active {
+      display: flex;
+      position: relative;
+      justify-content: space-between;
+      align-items: center;
+      &:after {
+        content: '\2212 ';
+        font-size: $label-font-size;
+        color: $primary-color;
+        font-weight: 700;
+      }
+      @include breakpoint(tablet) {
+        display: none;
+      }
+    }
+
+    .panel {
+      width: 100%;
+      max-height: 0;
+      overflow: hidden;
+      text-align: left;
+      border: none;
+      outline: none;
+      transition: all 0.5s ease;
+      opacity: 0;
+      p {
+        display: none;
+        font-size: $label-p-size;
+        text-align: center;
+      }
+    }
+
+    .active-mobile {
       display: block;
+      max-height: 800px;
+      transition: max-height 1s ease;
+      opacity: 1;
+      p {
+        display: block;
+      }
+    }
+
+    .active-others {
+      display: block;
+      max-height: 100%;
+      opacity: 1;
+      transition: all 0.5s ease;
+      p {
+        display: block;
+      }
+    }
+    @include breakpoint(tablet) {
+      margin: 30px auto 17px;
     }
   }
 
   label {
     font-size: 2em;
     text-transform: uppercase;
+    @include breakpoint(tablet) {
+      display: none;
+    }
   }
   /* material content css */
 
   #materials #material-stats {
-    display: block;
+    display: flex;
+    justify-content: space-evenly;
     margin: auto;
-    text-align: center;
-
     .material {
       display: inline-block;
+      text-align: center;
+      p {
+        color: $primary-color;
+        font-size: $mat-number-font-size;
+        margin: 0;
+      }
+      span {
+        color: $primary-color;
+        font-size: $mat-description-font-size;
+        text-transform: lowercase;
+      }
+
+      &:nth-child(2) {
+        padding-bottom: 20px;
+        border-bottom: solid 1px $primary-border-color;
+      }
     }
     @include breakpoint(tablet) {
       width: 547px;
     }
+  }
+
+  /* 
+    To render the content to be 
+    towards mid
+    of the screen 
+  */
+
+  @include breakpoint(tablet) {
+    margin-top: 100px;
   }
 }
